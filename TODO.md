@@ -1,5 +1,14 @@
 
 
+# Components
+
+## Dropdown Selectors
+
+- [x] Clusters - /test/components/clusters
+- [x] Tokens - /test/components/tokens
+- [x] Streams - /test/components/streams
+
+
 # REST APIs
 
 ## Millicast
