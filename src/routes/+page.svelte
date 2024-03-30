@@ -1,2 +1,9 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script type="ts">
+    import Cluster from '$lib/component/ui/Cluster.svelte';
+
+    export let data;
+</script>
+
+<h1>Clusters</h1>
+
+<Cluster clusters={ data.clusters }/>
