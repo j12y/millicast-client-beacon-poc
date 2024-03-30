@@ -1,14 +1,6 @@
 
 
 
-# API
-
-
-The following endpoints are available:
-
-- http://localhost:5173/api/cluster
-
-
 
 # RUNBOOK
 
