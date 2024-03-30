@@ -1,4 +1,4 @@
-import { get_publish_token_list } from "./millicast/publish_token";
+import { get_publish_token_by_name, get_publish_token_list } from "./millicast/publish_token";
 
 export async function get_streams() {
     const streams = await get_streams_index();
@@ -7,9 +7,12 @@ export async function get_streams() {
 }
 
 export async function get_stream_by_name(name) {
-    const streams = await get_streams_index();
+    const tokens = await get_publish_token_by_name({name: name, filterBy: "StreamName"});
+    return tokens.data;
 
-    return streams[name];
+    // This is an alternative method but not used because it must process all tokens:
+    // const streams = await get_streams_index();
+    // return streams[name];
 }
 
 // Get publish tokens and re-index by stream name

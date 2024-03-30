@@ -1,9 +1,5 @@
 
 
-
-
-
-
 # REST APIs
 
 ## Millicast
@@ -22,7 +18,7 @@ Proxy to millicast endpoint with same interface.
     - [ ] Delete Token
     - [ ] Update Token
     - [x] List Tokens - /api/millicast/publish_token/list
-    - [ ] List Tokens By Name - /api/millicast/publish_token/{name}
+    - [x] List Tokens By Name - /api/millicast/publish_token/list_by_name
     - [ ] Create Token
     - [ ] Get Active Publish Token ID
     - [x] Get All Active Publish Token IDs - /api/millicast/publish_token/active/all
