@@ -7,6 +7,7 @@
 - [x] Clusters - /test/components/clusters
 - [x] Tokens - /test/components/tokens
 - [x] Streams - /test/components/streams
+- [ ] Player - /test/components/player
 
 
 # REST APIs

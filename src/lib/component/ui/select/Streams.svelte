@@ -3,7 +3,7 @@
    export let selected = '';
 </script>
 
-<label>Streams:</label>
+<label>Stream:</label>
 <select id="streams" bind:value={ selected }>
 {#each streams as stream}
   <option value={ stream }>{ stream }</option>
