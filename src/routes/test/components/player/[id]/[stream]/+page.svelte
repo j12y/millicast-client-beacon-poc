@@ -7,4 +7,5 @@
 
 <StreamSelection bind:account={ data.id } streams={ data.streams } stream={ data.stream }/>
 
-<Player />
+<Player accountId={ data.id } streamName={ data.stream } />
+
