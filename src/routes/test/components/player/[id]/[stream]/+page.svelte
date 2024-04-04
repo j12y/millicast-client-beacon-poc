@@ -1,5 +1,5 @@
 <script type="ts">
-    import Player from '$lib/component/player/Player.svelte';
+    import Player from '$lib/component/player/VideoPlayer.svelte';
     import StreamSelection from '$lib/component/player/StreamSelection.svelte';
 
     export let data;

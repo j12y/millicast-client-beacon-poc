@@ -8,6 +8,12 @@
 - [x] Tokens - /test/components/tokens
 - [x] Streams - /test/components/streams
 - [ ] Player - /test/components/player
+    - [x] StreamSelection
+    - [x] Video Player
+    - [ ] live / not live
+    - [ ] MediaStats
+    - [ ] Diagnose
+
 
 
 # REST APIs
