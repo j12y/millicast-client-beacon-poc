@@ -2,7 +2,7 @@
     // export let data;
 </script>
 
-<h1>Beacon Demo</h1>
+<h1>Millicast UI Demo</h1>
 
 <p><a href="./test/components/clusters">clusters</a></p>
 <p><a href="./test/components/streams">streams</a></p>

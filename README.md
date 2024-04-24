@@ -1,6 +1,15 @@
 
 
 
+# OVERVIEW
+
+
+
+# REST Endpoints
+
+REST endpoints of the form `/api/millicast/api/{path}` are provided where **path** matches the path that appears after `https://api.millicast.com/api/{path}` with the same request/response schema. The authorization headers are inserted.
+
+Additionally, endpoints of the form `/api/v1/{path}` are provided as transformations or utilities.
 
 # RUNBOOK
 

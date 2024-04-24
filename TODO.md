@@ -7,13 +7,22 @@
 - [x] Clusters - /test/components/clusters
 - [x] Tokens - /test/components/tokens
 - [x] Streams - /test/components/streams
+
+## Player
+
 - [ ] Player - /test/components/player
     - [x] StreamSelection
-    - [x] Video Player
+    - [x] VideoPlayer
     - [ ] live / not live
     - [ ] MediaStats
     - [ ] Diagnose
-
+    - [ ] SecurePlayer
+    - [ ] MultiViewPlayer
+    - [ ] Audio control
+    - [ ] Play/Pause Duration
+- [ ] Recordings
+    - [ ] Clipping
+- [ ] Transcoders
 
 
 # REST APIs
@@ -40,6 +49,7 @@ Proxy to millicast endpoint with same interface.
     - [x] Get All Active Publish Token IDs - /api/millicast/publish_token/active/all
     - [ ] Disable Publish Token
 - [ ] RecordFiles
+    - [ ] RecordFilesV2
 - [ ] Stream
 - [ ] SubscribeToken
 - [ ] Webhooks

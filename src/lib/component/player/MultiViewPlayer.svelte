@@ -1,20 +1,11 @@
 <script lang="ts">
-    /**
-     *  VideoPlayer
-     * 
-     *  This component provides a basic video player. It requires an account id and stream name.
-     * 
-     *      <Player accountId={ id } streamName={ stream } />
-     * 
-     */
-
     import { Director, View } from '@millicast/sdk';
 
     export let accountId;
     export let streamName;
-    export let controls;
 
     let videoPlayer;
+    let miniPlayer;
 
     let sources = {};
 
@@ -58,7 +49,7 @@
     */
     async function handleBroadcastEvent(event) {
         const { name, data } = event;
-        console.log(`Event: ${name}`);
+        console.log(name);
         switch (name) {
             case 'viewercount':
                 handleViewerCountBroadcastEvent(data);
@@ -132,7 +123,11 @@
 
 
 <div>
-    <video width="640" height="360" bind:this={ videoPlayer } autoplay playsinline { controls } muted>
-        This browser does not support video elements.
+    <video width="640" height="360" bind:this={ videoPlayer } class="vidBox" controls>
+        This browser does not support video playback.
+    </video>
+
+    <video width="320" height="180" bind:this={ miniPlayer } class="vidBox" autoplay="autoplay" controls>
+        This browser does not support video playback.
     </video>
 </div>
