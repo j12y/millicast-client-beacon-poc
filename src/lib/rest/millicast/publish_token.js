@@ -39,7 +39,6 @@ export async function get_publish_token_by_id(params) {
 }
 
 export async function get_publish_token_by_name(params) {
-    console.log(params);
     let url = `${PUBLISH_ENDPOINT}/list_by_name?`;
     url += `name=${params?.name || 'myStreamName'}`;
     url += `&page=${params?.page || 1}`;
@@ -58,8 +57,22 @@ export async function get_publish_token_by_name(params) {
     return await response.json();
 }
 
+export async function get_publish_token_active(params) {
+    let url = `${PUBLISH_ENDPOINT}/active?`;
+    url += `streamId=${params?.streamId || '' }`;
+
+    console.log(url);
+    const options = {
+      method: 'GET',
+      headers: get_headers(),
+    };
+    let response = await fetch(url, options);
+    return await response.json();
+}
+
 export async function get_publish_token_active_all() {
     let url = `${PUBLISH_ENDPOINT}/active/all`;
+
     const options = {
       method: 'GET',
       headers: get_headers(),
