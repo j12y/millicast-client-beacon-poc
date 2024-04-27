@@ -82,6 +82,28 @@
         </td>
     </tr>
     <tr>
+        <td>Recordings</td>
+        <td></td>
+        <td>
+            <p><a href="./millicast/api/v2/record_files/list">GET /millicast/api/v2/record_files/list</a></p>
+            <p><a href="./millicast/api/v2/record_files/mediaAssetId">GET /millicast/api/v2/record_files/:mediaAssetId</a></p>
+            <hr/>
+            <p><a href="./millicast/api/record_files/list">GET /millicast/api/record_files/list</a></p>
+            <p><a href="./millicast/api/record_files/list_by_token">GET /millicast/api/record_files/list_by_token</a></p>
+            <p><a href="./millicast/api/record_files/list_by_stream">GET /millicast/api/record_files/list_by_stream</a></p>
+            <p><a href="./millicast/api/record_files/recordFileId">GET /millicast/api/record_files/:recordFileId</a></p>
+            <p><a href="./millicast/api/record_files/usage">GET /millicast/api/record_files/usage</a></p>
+            <p><a href="./millicast/api/record_files/usage_billing">GET /millicast/api/record_files/usage_billing</a></p>
+
+            <hr/>
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+            
+        </td>
+    </tr>
+    <tr>
         <td>Streams</td>
         <td></td>
         <td>

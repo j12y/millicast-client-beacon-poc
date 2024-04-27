@@ -13,11 +13,11 @@
 - [ ] Player - /test/components/player
     - [x] StreamSelection
     - [x] VideoPlayer
-    - [ ] live / not live
+    - [ ] live / not live - https://github.com/search?q=repo%3Amillicast%2Fvue-viewer-plugin%20isLive&type=code
     - [ ] MediaStats
     - [ ] Diagnose
     - [ ] SecurePlayer
-    - [ ] MultiViewPlayer
+    - [ ] MultiViewPlayer - https://dolby.io/blog/building-a-webrtc-live-stream-multiviewer-app/
     - [ ] Audio control
     - [ ] Play/Pause Duration
 - [ ] Recordings
@@ -31,28 +31,67 @@
 
 Proxy to millicast endpoint with same interface.
 
-- [ ] Analytics
-- [ ] Transcoder
 - [ ] Account
+    - [x] Read cascade settings - /api/account/geo_cascade
+    - [ ] Update cascade settings
+- [x] Analytics
+    - [x] /api/analytics/account/total
+    - [x] /api/analytics/account/series
+    - [x] /api/analytics/account/geo_total
+    - [x] /api/analytics/account/geo_series
+    - [x] /api/analytics/streams/total
+    - [x] /api/analytics/streams/series
+    - [x] /api/analytics/streams/geo_total
+    - [x] /api/analytics/streams/geo_series
+    - [x] /api/analytics/tracking/streams/total
+    - [x] /api/analytics/tracking/streams/series
+    - [x] /api/analytics/tracking/total
+    - [x] /api/analytics/tracking/series
 - [x] Cluster
-    - [x] Read Clusters -  /api/millicast/cluster
+    - [x] Read Clusters -  /api/cluster
     - [x] Update Cluster
 - [ ] Geo
+    - [x] Read settings - /api/geo/account
+    - [ ] Update settings
 - [ ] PublishToken
-    - [x] Read Token - /api/millicast/publish_token/{tokenId}
+    - [x] Read Token - /api/publish_token/{tokenId}
     - [ ] Delete Token
     - [ ] Update Token
-    - [x] List Tokens - /api/millicast/publish_token/list
-    - [x] List Tokens By Name - /api/millicast/publish_token/list_by_name
+    - [x] List Tokens - /api/publish_token/list
+    - [x] List Tokens By Name - /api/publish_token/list_by_name
     - [ ] Create Token
-    - [ ] Get Active Publish Token ID
-    - [x] Get All Active Publish Token IDs - /api/millicast/publish_token/active/all
+    - [x] Get Active Publish Token ID - /api/publish_token/active
+    - [x] Get All Active Publish Token IDs - /api/publish_token/active/all
     - [ ] Disable Publish Token
 - [ ] RecordFiles
     - [ ] RecordFilesV2
+        - [ ] list media assets
+            - [x] query params
+            - [ ] body params
+        - [x] read media assets
+        - [ ] delete media assets
+    - [x] read file
+    - [ ] delete files
+    - [ ] delete all files
+    - [x] list files
+    - [x] list files by token
+    - [x] list files by stream
+    - [x] usage
+    - [x] usage billable
+    - [ ] create clip
+    - [ ] get clip request
+    - [ ] list clip requests
+    - [ ] list available clip sources
 - [ ] Stream
 - [ ] SubscribeToken
+- [ ] Transcoder
 - [ ] Webhooks
+- [ ] ClusterSettings
+- [ ] Director
+- [ ] RtcBackup
+- [ ] Whep
+- [ ] Whip
+- [ ] GraphQL
 
 ## Application
 

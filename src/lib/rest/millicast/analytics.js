@@ -48,7 +48,6 @@ async function get_analytics(url, params) {
     return await response.json();
 }
 
-
 // GET /api/analytics/account/total
 export async function get_analytics_account_total(params) {
     let url = `${ANALYTICS_ENDPOINT}/account/total?`; 
