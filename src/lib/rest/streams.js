@@ -1,4 +1,4 @@
-import { get_publish_token_by_name, get_publish_token_list } from "./millicast/publish_token";
+import { get_publish_token_by_name, get_publish_token_list } from "./millicast/tokens";
 
 export async function get_streams() {
     const streams = await get_streams_index();

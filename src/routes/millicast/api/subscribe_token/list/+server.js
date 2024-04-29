@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 
-import { get_publish_token_list } from "$lib/rest/millicast/tokens";
+import { get_subscribe_token_list } from "$lib/rest/millicast/tokens";
 
 export async function GET(event) {
     let params = {
@@ -10,7 +10,7 @@ export async function GET(event) {
         sortBy: event.url.searchParams.get('sortBy')
     };
 
-    let tokens = await get_publish_token_list(params);
+    let tokens = await get_subscribe_token_list(params);
     return json(tokens);
 }
 

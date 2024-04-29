@@ -84,14 +84,26 @@ Proxy to millicast endpoint with same interface.
     - [ ] list available clip sources
 - [ ] Stream
 - [ ] SubscribeToken
+    - [x] Get token
+    - [ ] delete token
+    - [ ] update token
+    - [x] list tokens
+    - [x] list tokens by name
+    - [ ] create token
 - [ ] Transcoder
 - [ ] Webhooks
+
+### GraphQL
+
+- [ ] GraphQL
+
+### Director API
+
 - [ ] ClusterSettings
 - [ ] Director
 - [ ] RtcBackup
 - [ ] Whep
 - [ ] Whip
-- [ ] GraphQL
 
 ## Application
 

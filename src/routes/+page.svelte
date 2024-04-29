@@ -74,6 +74,11 @@
             <p><a href="./millicast/api/publish_token/active">GET /millicast/api/publish_token/active</a></p>
             <p><a href="./millicast/api/publish_token/active/all">GET /millicast/api/publish_token/active/all</a></p>
             <p><a href="./millicast/api/publish_token/id">GET /millicast/api/publish_token/:id</a></p>
+            <hr/>
+            <p><a href="./millicast/api/subscribe_token/list">GET /millicast/api/subscribe_token/list</a></p>
+            <p><a href="./millicast/api/subscribe_token/list_by_name">GET /millicast/api/subscribe_token/list_by_name</a></p>
+            <p><a href="./millicast/api/subscribe_token/id">GET /millicast/api/subscribe_token/:id</a></p>
+            <hr/>
         </td>
         <td></td>
         <td></td>

@@ -1,4 +1,4 @@
-import { get_publish_token_list } from "$lib/rest/millicast/publish_token.js";
+import { get_publish_token_list } from "$lib/rest/millicast/tokens.js";
 
 export async function load({ params }) {
     let publish_tokens = await get_publish_token_list({itemsOnPage: 50});

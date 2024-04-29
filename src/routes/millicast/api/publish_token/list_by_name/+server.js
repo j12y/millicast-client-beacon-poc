@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 
-import { get_publish_token_by_name } from "$lib/rest/millicast/publish_token";
+import { get_publish_token_by_name } from "$lib/rest/millicast/tokens";
 
 export async function GET(event) {
     let params = {

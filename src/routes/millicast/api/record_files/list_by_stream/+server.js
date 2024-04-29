@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 
-import { get_record_files_list_by_stream } from "$lib/rest/millicast/recordings"
+import { get_record_files_list_by_stream } from "$lib/rest/millicast/media"
 
 export async function GET(event) {
     let params = {
