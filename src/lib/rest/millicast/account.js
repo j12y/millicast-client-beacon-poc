@@ -1,4 +1,4 @@
-import { MILLICAST_ACCOUNT_ID, MILLICAST_API_ENDPOINT } from '$env/static/private';
+import { MILLICAST_API_ENDPOINT } from '$env/static/private';
 import { get_headers } from '$lib/rest/millicast/common';
 
 /*
@@ -8,15 +8,11 @@ import { get_headers } from '$lib/rest/millicast/common';
   https://docs.dolby.io/streaming-apis/reference/analytics_accounttotal  
 
 */
-export function get_account_id() {
-  return MILLICAST_ACCOUNT_ID;
-}
-
-
-
 
 export async function get_geo_account() {
     let url = `${MILLICAST_API_ENDPOINT}/api/geo/account`;
+
+    console.log(url);
 
     const options = {
       method: 'GET',

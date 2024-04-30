@@ -83,6 +83,8 @@ Proxy to millicast endpoint with same interface.
     - [ ] list clip requests
     - [ ] list available clip sources
 - [ ] Stream
+    - [ ] stop active stream
+    - [ ] stop all active streams
 - [ ] SubscribeToken
     - [x] Get token
     - [ ] delete token
@@ -91,7 +93,22 @@ Proxy to millicast endpoint with same interface.
     - [x] list tokens by name
     - [ ] create token
 - [ ] Transcoder
+    - [x] get transcoder record
+    - [ ] configure transcoder
+    - [ ] delete transcoder
+    - [ ] create transcoder
+    - [x] list transcoders
+    - [ ] start transcoder
+    - [ ] stop transcoder
+    - [x] get transcoder instance
+    - [x] list transcoder instances
+    - [x] list transcoder profiles
 - [ ] Webhooks
+    - [ ] read webhook
+    - [ ] update webhook
+    - [ ] remove webhook
+    - [ ] list webhooks
+    - [ ] add webhook
 
 ### GraphQL
 
@@ -105,14 +122,14 @@ Proxy to millicast endpoint with same interface.
 - [ ] Whep
 - [ ] Whip
 
-## Application
+## Application APIs
 
 Streams created to provide convenient transformations or cleaner interface for application.
 
 - [ ] Streams 
     - [x] Stream name list - /api/v1/streams
     - [x] Stream details by name - /api/v1/streams/{name}
-
+- [ ] Documentation
 
 
 
