@@ -1,0 +1,39 @@
+import { MILLICAST_API_SECRET, MILLICAST_API_ENDPOINT } from '$env/static/private';
+import { json } from '@sveltejs/kit';
+
+const url = `${MILLICAST_API_ENDPOINT}/api/geo/account`;
+
+export async function GET(event) {
+    const options = {method: 'GET', headers: {accept: 'application/json', authorization: `Bearer ${MILLICAST_API_SECRET}`}};
+
+    let response = await fetch(url, options);
+    let body = await response.json();
+
+    return json(body.data);
+}
+
+export async function POST(event) {
+    const request = await event.request.json();
+
+    const options = {
+        method: 'POST', 
+        headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${MILLICAST_API_SECRET}`}, 
+        body: JSON.stringify(request)
+    };
+
+    let response = await fetch(url, options);
+    let body = await response.json();
+
+    return json(body);
+}
+
+
+/*
+GET http://localhost:5173/api/millicast/geo/account
+
+{
+    "allowedCountries": [],
+    "deniedCountries": []
+}
+
+*/

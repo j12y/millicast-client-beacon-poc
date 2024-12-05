@@ -1,0 +1,666 @@
+
+# TODO
+
+## Overall
+
+- analytics account total / series -- only bytes in / out reported but can be used to determine last date of usage
+- analytics geo series includes view/publish duration and publish/view counts
+
+- [ ] review api endpoints and improve data
+    - [ ] can a /dashboard/streams endpoint call /millicast/foo easily?
+    - [x] /account is good
+    - [x] /countries is good
+    - [x] /millicast is legacy and fine
+    - [ ] streams can be improved
+    - [ ] tokens may no longer be needed
+    - [ ] need to add a clusters
+- [ ] Can I document my endpoints and publish the docs too?
+- [ ] still need to explore all the graphql queries
+- [ ] want to know date/time of last broadcast
+- [ ] want to know if stream has recordings or not
+
+
+
+- [ ] History timeline view (GraphQL queries)
+    - [ ] surface last broadcast to main page
+    - [ ] see if graphql can be used to load same overall stream summary faster; or individual stream details faster
+- [ ] Security - finish toggles, tooltips 
+    - [ ] subscriber token intermingling and self-signed subscriber token clarification with examples
+- [ ] Embed code for broadcaster and make it look better; sdk credentials view
+- [ ] SRT paths are not what they first appeared, update with actual code to construct along with passphrase
+- [ ] Delete, deactivate sources
+- [ ] SDK credentials for broadcaster
+
+
+
+- [ ] Missing
+    - [ ] How to setup backup streams
+    - [ ] How to handle random stream names or wildcards
+    - [ ] Setting expiration date
+    - [ ] Self-signed token workflow
+
+
+
+## Broadcast
+
+- [ ] editing label to change table value
+- [ ] add source (name) and protocol choice (create token for browser automatically)
+- [ ] Broadcaster look & feel and settings
+    - [ ] make the settings for multi-source and things easier than opening media settings
+- [ ] delete source
+
+## Playback
+
+
+## Security
+
+- [x] restrictions data
+- [ ] Security
+    - [x] subscriber token required toggle
+    - [ ] geoblocking toggle
+    - [ ] bind ip address toggle
+- [ ] subscriber token api endpoint and list display
+    - [ ] Clarify Broadcast / Playback restrictions depending on token type selected
+    - [ ] add subscriber tokens for playback / broadcast restriction clarity
+
+## History
+
+- [ ] History mockup for analytics of start/stop/duration per stream
+- [ ] stream history: when it started / duration its been going
+
+## Low Priority
+
+- [ ] recordings
+    - [ ] are recordings enabled
+    - [ ] get recordings associated with a stream
+- [ ] create new stream
+- [ ] Find account id from an endpoint and host it to share
+- [ ] API: Analytics
+    - [ ] Total bandwidth per TrackingID per stream
+    - [ ] Series bandwidth per TrackingID per stream
+    - [ ] Total bandwidth for streams specified by TrackingID
+    - [ ] Series bandwidth for streams specified by TrackingID
+- [ ] API: Stream
+- [ ] API: Webhooks
+- [ ] API: Record Files 
+    - [ ] Delete All Files
+    - [ ] Usage
+    - [ ] Usage Billable
+    - [ ] Delete Files
+
+### Bugs
+
+
+### Quality
+
+- [ ] data model wonky with data.token.token.settings... and inconsistently used causing confusion
+- [ ] instead of stores, consider contexts to maintain stream overall state such as live, secure, etc.
+
+### Look & Feel
+
+- [ ] text search and filters for tables
+- [ ] figure out how to make slide transition work when opening a section
+- [ ] setup a sitename that is a readable store or global variable for <title> setting
+
+### Post-POC Follow-ups
+
+- [ ] recordings associated with a token but not stream?
+- [ ] add friction note: isActive on token endpoint isn't same as "live" though the /active/all suggests it would be (inconsistency)
+- [ ] I tried to use Stream Series to see if a stream i started was there to determine when it started -- this may be a question for others later since not urgent
+- [ ] POST /api/geo/account but PUT /api/cluster
+- [ ] geo list of allowed countries / denied countries -- how to validate? https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+
+
+# DONE
+
+- [x] Data APIs
+    - [x] Analytics
+        - [x] Account Total | GET http://localhost:5173/api/millicast/analytics/account/total?startDate=2023-11-01&endDate=2023-11-30
+        - [x] Account Series | GET http://localhost:5173/api/millicast/analytics/account/series?startDate=2023-11-01&endDate=2023-11-30&resolution=day
+        - [x] Account Geo Total | GET http://localhost:5173/api/millicast/analytics/account/geo_total?startDate=2023-11-01&endDate=2023-11-30
+        - [x] Account Geo Series | GET http://localhost:5173/api/millicast/analytics/account/geo_series?startDate=2023-11-01&endDate=2023-11-30&resolution=day
+        - [x] Streams Total | GET http://localhost:5173/api/millicast/analytics/streams/total?startDate=2023-11-01&stopDate=2023-11-30&streamNames=millidash
+        - [x] Streams Series | GET http://localhost:5173/api/millicast/analytics/streams/series?startDate=2023-11-01&stopDate=2023-11-30&resolution=day&streamNames=millidash
+        - [x] Streams Geo Total | GET http://localhost:5173/api/millicast/analytics/account/geo_total?startDate=2023-11-01&stopDate=2023-11-3
+        - [x] Streams Geo Series | GET http://localhost:5173/api/millicast/analytics/streams/geo_series?startDate=2023-11-01&endDate=2023-11-30&resolution=day&stream=millidash&stream=360
+    - [x] Cluster
+        - [x] Read Clusters | GET http://localhost:5173/api/millicast/cluster
+        - [x] Update Cluster | PUT http://localhost:5173/api/millicast/cluster
+    - [x] Geo
+        - [x] Read Account Geo Restrictions | GET http://localhost:5173/api/millicast/geo/account
+        - [x] Update Account Geo Restrictions
+    - [x] PublishToken
+        - [x] Read Token | GET http://localhost:5173/api/millicast/publish_token/6315224
+        - [x] Delete Token
+        - [x] Update Token
+        - [x] List Tokens | GET http://localhost:5173/api/millicast/publish_token/list
+        - [x] List Tokens By Name | GET publish_token/list_by_name
+        - [x] Create Token
+        - [x] Get Active Publish Token ID | GET http://localhost:5173/api/millicast/publish_token/active?streamId=GCNQRh/360
+        - [x] Get All Active Publish Token IDs | GET http://localhost:5173/api/millicast/publish_token/active/all
+        - [x] Disable Publish Token
+    - [x] SubscribeToken
+        - [x] Read Token | GET http://localhost:5173/api/millicast/subscribe_token/890424360
+        - [x] Delete Token | DELETE http://localhost:5173/api/millicast/subscribe_token/906502417
+        - [x] Update Token | PUT http://localhost:5173/api/millicast/subscribe_token/906502417
+        - [x] List Tokens | GET http://localhost:5173/api/millicast/subscribe_token/list
+        - [x] List Tokens by Name
+        - [x] Create Token | POST http://localhost:5173/api/millicast/subscribe_token
+    - [x] RecordFiles
+        - [x] List Files 
+        - [x] List Files by Token
+        - [x] List Files by Stream
+        - [x] Read File
+- [x] GraphQL
+
+- [x] hover and/or click to learn how to use things within the portal experience itself and CMS
+- [x] figure out why clicking on stream goes to /streams/undefined
+- [x] record demo of workflows
+- [x] Dashboard Guide
+    - [x] Icon for tooltip - ToolTipIcon
+    - [x] Drawer for information - ToolTip && ToolTipStore
+    - [x] Pass information to drawer
+- [x] inventory other missing settings
+- [x] thumbnails, recording settings in distribution section of broadcast
+- [x] Create source popup ui
+    - [x] close modal
+    - [x] open modal
+    - [x] label it
+    - [x] better descriptions
+    - [x] position on screen
+- [x] Live Player customization
+    - [x] Hosted / BYO / Integration tabs
+    - [x] viewer cusotmization toggles
+    - [x] add customization options to change live player experience
+    - [x] handle height/width reactivity
+    - [x] view and copy embed code
+- [x] toggle component
+- [x] RTMP
+    - [x] secure toggle
+    - [x] toggle multibitrate toggle add [MBR] to the label
+    - [x] figure out how to bind protocol setting at Broadcast level to change in Rtmp component
+- [x] Security tab mockup for token settings
+- [x] Broadcast -- use JS SDK to add broadcaster
+- [x] cluster region setting in broadcast (read)
+- [x] Tabular display - streams / broadcast sources | click for details
+- [x] add dolby logo that links back to main page
+- [x] don't load player automatically, make it a button
+- [x] view of token details (ie. endpoints / config based on type of source)
+- [x] switch between stream detail tabs
+- [x] move playback into its own component
+- [x] how to determine if a stream is live
+    - [x] search by token or stream id
+- [x] view of an individual stream details
+- [x] playback working with real account id
+- [x] view of all streams
+    - [x] layout streams in a grid with some css styling
+    - [x] add new stream button
+- [x] how to determine if a token is live
+- [x] Get list of streams from REST API
+- [x] get account id which is needed to view a stream... stream names need to be unique
+- [x] flip token / stream relationship
+- [x] is there anything from token endpoint i can't get from list? no
+- [x] favicon
+
+
+
+http://localhost:5173/api/account
+http://localhost:5173/api/streams
+http://localhost:5173/api/tokens
+http://localhost:5173/api/tokens/6263060
+
+
+# DATA
+
+{
+    "360": {
+        "tokens": [
+            {
+                "id": 6248020,
+                "label": "Ricoh Theta",
+                "protocol": "WHIP",
+                "created": "2023-11-03T17:59:16Z",
+                "token": "3fae7ace2548d0eceae1e9626771b902ed40cc6713ba038135c73d891442f8de",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": true,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 6248020,
+                    "label": "Ricoh Theta",
+                    "token": "3fae7ace2548d0eceae1e9626771b902ed40cc6713ba038135c73d891442f8de",
+                    "addedOn": "2023-11-03T17:59:16Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": "360",
+                            "isRegex": false
+                        },
+                        {
+                            "streamName": "myStreamName",
+                            "isRegex": false
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": [],
+                    "originCluster": ""
+                }
+            }
+        ],
+        "live": true,
+        "public": true,
+        "expires": false
+    },
+    "secure-example": {
+        "tokens": [
+            {
+                "id": 6302815,
+                "label": "browser",
+                "protocol": "WHIP",
+                "created": "2023-11-13T16:46:33Z",
+                "expires": "2024-11-14T16:46:25Z",
+                "token": "804036a21b6474ce46d312835fd0941a5f875e343cf81c0ff7dcdb7ab81aae86",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": true,
+                    "record": false,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": true,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 6302815,
+                    "label": "browser",
+                    "token": "804036a21b6474ce46d312835fd0941a5f875e343cf81c0ff7dcdb7ab81aae86",
+                    "addedOn": "2023-11-13T16:46:33Z",
+                    "expiresOn": "2024-11-14T16:46:25Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": "secure-example",
+                            "isRegex": false
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": [],
+                    "originCluster": ""
+                }
+            }
+        ],
+        "live": false,
+        "public": false,
+        "expires": true
+    },
+    "millidash": {
+        "tokens": [
+            {
+                "id": 6293767,
+                "label": "ffmpeg",
+                "protocol": "RTMP",
+                "created": "2023-11-12T16:00:36Z",
+                "token": "88e0a5a29159baca6926381dc80d38e792cd0e78d08ca151763ab0835998f421",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": true,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 6293767,
+                    "label": "ffmpeg",
+                    "token": "88e0a5a29159baca6926381dc80d38e792cd0e78d08ca151763ab0835998f421",
+                    "addedOn": "2023-11-12T16:00:36Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": "millidash",
+                            "isRegex": false
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": [],
+                    "originCluster": ""
+                }
+            },
+            {
+                "id": 6293759,
+                "label": "obs",
+                "protocol": "WHIP",
+                "created": "2023-11-12T15:59:59Z",
+                "token": "824d3caa26630b88b215c71159f404a54cc72b48d95203624d8988344f485f9d",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": true,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 6293759,
+                    "label": "obs",
+                    "token": "824d3caa26630b88b215c71159f404a54cc72b48d95203624d8988344f485f9d",
+                    "addedOn": "2023-11-12T15:59:59Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": "millidash",
+                            "isRegex": false
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": [],
+                    "originCluster": ""
+                }
+            },
+            {
+                "id": 6293757,
+                "label": "browser",
+                "protocol": "WHIP",
+                "created": "2023-11-12T15:59:40Z",
+                "token": "c5d16b726b5d73065dba7edc6f8fe017c5c38d987ff515c5121f93b30c384b2f",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": true,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 6293757,
+                    "label": "browser",
+                    "token": "c5d16b726b5d73065dba7edc6f8fe017c5c38d987ff515c5121f93b30c384b2f",
+                    "addedOn": "2023-11-12T15:59:40Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": "millidash",
+                            "isRegex": false
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": [],
+                    "originCluster": ""
+                }
+            }
+        ],
+        "live": false,
+        "public": true,
+        "expires": false
+    },
+    "demo1": {
+        "tokens": [
+            {
+                "id": 5895312,
+                "label": "IBC - Demo #1",
+                "protocol": "WHIP",
+                "created": "2023-09-07T18:25:46Z",
+                "token": "60c8ac40f66503d06128839fb2ff976e8c5f67c0d216af003ff6557c68408f9c",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": true,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 5895312,
+                    "label": "IBC - Demo #1",
+                    "token": "60c8ac40f66503d06128839fb2ff976e8c5f67c0d216af003ff6557c68408f9c",
+                    "addedOn": "2023-09-07T18:25:46Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": "demo1",
+                            "isRegex": false
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": [],
+                    "originCluster": "ams-1"
+                }
+            }
+        ],
+        "live": true,
+        "public": true,
+        "expires": false
+    },
+    ".*": {
+        "tokens": [
+            {
+                "id": 5795275,
+                "label": "santa-clara-hockey",
+                "protocol": "WHIP",
+                "created": "2023-08-20T15:24:26Z",
+                "token": "35c88c5013cdf6e89132915392c92964170fa9f0c9ace8cfd99d1b57d015707f",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": true,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": true,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 5795275,
+                    "label": "santa-clara-hockey",
+                    "token": "35c88c5013cdf6e89132915392c92964170fa9f0c9ace8cfd99d1b57d015707f",
+                    "addedOn": "2023-08-20T15:24:26Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": ".*",
+                            "isRegex": true
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": []
+                }
+            },
+            {
+                "id": 5737958,
+                "label": "AWE_Asia",
+                "protocol": "WHIP",
+                "created": "2023-08-10T19:17:54Z",
+                "token": "2e864285aa242e8d464831679650792c56d10a8d472ef1e9f6ad46e7c506e824",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": true,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 5737958,
+                    "label": "AWE_Asia",
+                    "token": "2e864285aa242e8d464831679650792c56d10a8d472ef1e9f6ad46e7c506e824",
+                    "addedOn": "2023-08-10T19:17:54Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": ".*",
+                            "isRegex": true
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": []
+                }
+            },
+            {
+                "id": 5347728,
+                "label": "Unity Multisource ",
+                "protocol": "WHIP",
+                "created": "2023-05-31T02:04:39Z",
+                "token": "fe1bffcf504cbcf916be302a3371af02115d81b66391904c43ba3f5ee56b8526",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": false,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 5347728,
+                    "label": "Unity Multisource ",
+                    "token": "fe1bffcf504cbcf916be302a3371af02115d81b66391904c43ba3f5ee56b8526",
+                    "addedOn": "2023-05-31T02:04:39Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": ".*",
+                            "isRegex": true
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": []
+                }
+            },
+            {
+                "id": 5345654,
+                "label": "AWE_Demo",
+                "protocol": "WHIP",
+                "created": "2023-05-30T21:39:12Z",
+                "token": "84c4ae5eed9dbc82b5d87a9582b1e9329c1c18487af3ecfd6ad251f4d95777c0",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": false,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": false,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 5345654,
+                    "label": "AWE_Demo",
+                    "token": "84c4ae5eed9dbc82b5d87a9582b1e9329c1c18487af3ecfd6ad251f4d95777c0",
+                    "addedOn": "2023-05-30T21:39:12Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": ".*",
+                            "isRegex": true
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": []
+                }
+            },
+            {
+                "id": 5239342,
+                "label": "MultiplaySpatial_Unity",
+                "protocol": "WHIP",
+                "created": "2023-05-18T21:33:32Z",
+                "token": "c178df1126219cad1a4f239142e463f6858cac0afb0b5d320b008e2683027a43",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": false,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": false,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 5239342,
+                    "label": "MultiplaySpatial_Unity",
+                    "token": "c178df1126219cad1a4f239142e463f6858cac0afb0b5d320b008e2683027a43",
+                    "addedOn": "2023-05-18T21:33:32Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": ".*",
+                            "isRegex": true
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": []
+                }
+            },
+            {
+                "id": 5153345,
+                "label": "Token 01/May/2023 13:43:49",
+                "protocol": "WHIP",
+                "created": "2023-05-01T20:43:58Z",
+                "token": "9ba0473645b052e6220328d90577e433be61395e7a9b496da55ccc24833f54e8",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": false,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": false,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 5153345,
+                    "label": "Token 01/May/2023 13:43:49",
+                    "token": "9ba0473645b052e6220328d90577e433be61395e7a9b496da55ccc24833f54e8",
+                    "addedOn": "2023-05-01T20:43:58Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": ".*",
+                            "isRegex": true
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": []
+                }
+            },
+            {
+                "id": 5065777,
+                "label": "Unity Montreal - ClientDriven",
+                "protocol": "WHIP",
+                "created": "2023-04-14T17:46:38Z",
+                "token": "8201cf9002820fcf3835ac52c33088bb26d681d401dbc4d2826cbb36b320988a",
+                "settings": {
+                    "allowedCountries": [],
+                    "deniedCountries": [],
+                    "subscribeRequiresAuth": false,
+                    "record": false,
+                    "multisource": true,
+                    "enableThumbnails": false,
+                    "lowLatencyRtmp": false,
+                    "integrationId": "None",
+                    "displaySrtPassphrase": false,
+                    "id": 5065777,
+                    "label": "Unity Montreal - ClientDriven",
+                    "token": "8201cf9002820fcf3835ac52c33088bb26d681d401dbc4d2826cbb36b320988a",
+                    "addedOn": "2023-04-14T17:46:38Z",
+                    "isActive": true,
+                    "streams": [
+                        {
+                            "streamName": ".*",
+                            "isRegex": true
+                        }
+                    ],
+                    "allowedOrigins": [],
+                    "allowedIpAddresses": []
+                }
+            }
+        ],
+        "live": false,
+        "public": true,
+        "expires": false
+    },
+}

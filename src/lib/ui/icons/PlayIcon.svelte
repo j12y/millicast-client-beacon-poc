@@ -1,0 +1,7 @@
+<script>
+    export let active=false;
+</script>
+
+<svg class="w-4 h-4 me-2 {active ? 'text-white' : 'text-gray-500' }" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 10 16">
+<path d="M3.414 1A2 2 0 0 0 0 2.414v11.172A2 2 0 0 0 3.414 15L9 9.414a2 2 0 0 0 0-2.828L3.414 1Z"/>
+</svg>
