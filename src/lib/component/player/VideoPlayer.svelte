@@ -9,14 +9,18 @@
      */
 
     import { Director, View } from '@millicast/sdk';
+    import StatusBadge from './StatusBadge.svelte';
 
     export let accountId;
     export let streamName;
+
     export let controls;
+    export let live = false;
 
     let videoPlayer;
 
-    let sources = {};
+    const sources = new Set();
+    const sourceTranceiverMap = new Map();
 
     main();
 
@@ -32,6 +36,7 @@
 
 
         try {
+
             await view.connect({
                 events: ['active', 'inactive', 'stopped', 'layers', 'viewercount']
             });
@@ -40,8 +45,25 @@
         }
     }
 
-    // Track events indicate... TODO
+    /**
+     * Track events indicate 
+     * 
+     * @param event
+     * 
+     * 
+     */
     async function handleTrackEvent(event) {
+        console.log('Track Event');
+        console.log(event);
+        console.log(event.streams);
+        console.log(`kind=${event.track.kind}`);
+        console.log(`id=${event.track.id}`);
+        console.log(`mid=${event.track.mid}`);
+        let tracks = event.streams[0].getTracks();
+        tracks.forEach(element => {
+            console.log(element);
+        });
+
         videoPlayer.srcObject = event.streams[0];
         videoPlayer.hidden = false;
         videoPlayer.autoplay = true;
@@ -107,6 +129,9 @@
      */
     function handleActiveBroadcastEvent(data) {
         console.log(data);
+
+        live = true;
+        sources.add(data.sourceID);
     }
 
     /**
@@ -125,6 +150,7 @@
      */
     function handleStoppedBroadcastEvent(data) {
         console.log(data);
+        live = false;
     }
 
 
@@ -136,3 +162,5 @@
         This browser does not support video elements.
     </video>
 </div>
+
+<StatusBadge label={ live ? "LIVE" : "OFFLINE" } />

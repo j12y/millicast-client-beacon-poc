@@ -143,7 +143,7 @@
         <td></td>
         <td></td>
         <td>
-            
+            <p><a href="./test/components/transcoders">select transcoders</a></p>
             
         </td>
         <td>
